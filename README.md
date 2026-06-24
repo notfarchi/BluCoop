@@ -1,4 +1,4 @@
-# Título do Projeto
+# BluCoop - Cooperativa
 
 `CURSO: Sistemas de Informação`
 
