@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BluCoop Admin</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f1ec;
+      color: #16253d;
+    }
+
+    .topbar {
+      background: #0d1b2e;
+      color: #fff;
+      padding: 20px 28px;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+
+    .panel {
+      background: #fff;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(13, 27, 46, 0.08);
+      margin-bottom: 24px;
+    }
+
+    h1, h2 {
+      margin-top: 0;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-bottom: 18px;
+    }
+
+    p.sub {
+      margin-top: 0;
+      color: #5a6472;
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    input, select, button {
+      width: 100%;
+      border-radius: 6px;
+      border: 1px solid #cfd6df;
+      padding: 12px 14px;
+      font-size: 14px;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #2e6da4;
+      box-shadow: 0 0 0 3px rgba(46, 109, 164, 0.15);
+    }
+
+    button {
+      border: none;
+      background: #0d1b2e;
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    button:hover {
+      background: #132744;
+    }
+
+    .secondary {
+      background: #d8dee8;
+      color: #16253d;
+    }
+
+    .secondary:hover {
+      background: #c6cfdb;
+    }
+
+    .danger {
+      background: #b84040;
+    }
+
+    .danger:hover {
+      background: #9b3030;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .actions button {
+      width: auto;
+      min-width: 120px;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .toolbar .actions {
+      margin-top: 0;
+    }
+
+    .message {
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .error {
+      color: #b84040;
+    }
+
+    .success {
+      color: #2d6b45;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    thead {
+      background: #0d1b2e;
+      color: #fff;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 14px 12px;
+      border-bottom: 1px solid #e7ebf0;
+      font-size: 14px;
+      vertical-align: top;
+    }
+
+    tbody tr:hover {
+      background: #f8fafc;
+    }
+
+    .table-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .table-actions button {
+      width: auto;
+      min-width: 90px;
+      padding: 10px 12px;
+      font-size: 13px;
+    }
+
+    #painel-crud {
+      display: none;
+    }
+
+    @media (max-width: 800px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .toolbar {
+        align-items: stretch;
+      }
+
+      .toolbar .actions {
+        width: 100%;
+      }
+
+      .toolbar .actions button {
+        width: 100%;
+      }
+
+      th, td {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">BLUCOOP ADMIN</div>
+
+  <div class="container">
+    <div id="painel-login" class="panel">
+      <h1>Acesso administrativo</h1>
+      <p class="sub">Entre com as credenciais da área de administração para consultar e manter o cadastro de unidades.</p>
+
+      <div class="grid">
+        <div>
+          <label for="usuario">Usuário</label>
+          <input id="usuario" type="text" placeholder="admin">
+        </div>
+
+        <div>
+          <label for="senha">Senha</label>
+          <input id="senha" type="password" placeholder="Senha">
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="button" onclick="fazerLogin()">Entrar</button>
+      </div>
+
+      <div id="erro-login" class="message error"></div>
+    </div>
+
+    <div id="painel-crud">
+      <div class="panel">
+        <div class="toolbar">
+          <div>
+            <h1>Cadastro de unidades</h1>
+            <p class="sub">Gerencie as unidades exibidas no ambiente BluCoop.</p>
+          </div>
+
+          <div class="actions">
+            <button type="button" class="secondary" onclick="limparFormulario()">Novo cadastro</button>
+            <button type="button" class="danger" onclick="logout()">Sair</button>
+          </div>
+        </div>
+
+        <form id="form-unidade">
+          <input type="hidden" id="unidade-id">
+
+          <div class="grid">
+            <div>
+              <label for="nome">Nome</label>
+              <input id="nome" type="text" placeholder="Matriz" required>
+            </div>
+
+            <div>
+              <label for="cidade">Cidade</label>
+              <input id="cidade" type="text" placeholder="Blumenau" required>
+            </div>
+
+            <div>
+              <label for="colaboradores">Colaboradores</label>
+              <input id="colaboradores" type="number" min="0" placeholder="60" required>
+            </div>
+
+            <div>
+              <label for="maquinas">Máquinas</label>
+              <input id="maquinas" type="number" min="0" placeholder="63" required>
+            </div>
+
+            <div class="field-full">
+              <label for="servidores">Servidores</label>
+              <input id="servidores" type="text" placeholder="3 (DNS, FTP, BD)" required>
+            </div>
+
+            <div>
+              <label for="status">Status</label>
+              <select id="status" required>
+                <option value="Ativa">Ativa</option>
+                <option value="Sede">Sede</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="submit">Salvar</button>
+            <button type="button" class="secondary" onclick="limparFormulario()">Limpar</button>
+          </div>
+
+          <div id="mensagem-form" class="message"></div>
+        </form>
+      </div>
+
+      <div class="panel">
+        <h2>Unidades cadastradas</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Cidade</th>
+              <th>Colaboradores</th>
+              <th>Máquinas</th>
+              <th>Servidores</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="lista-unidades"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function verificarSessao() {
+      const res = await fetch('/api/session', {
+        credentials: 'include'
+      });
+
+      const data = await res.json();
+
+      if (data.autenticado) {
+        document.getElementById('painel-login').style.display = 'none';
+        document.getElementById('painel-crud').style.display = 'block';
+        listarUnidades();
+      } else {
+        document.getElementById('painel-login').style.display = 'block';
+        document.getElementById('painel-crud').style.display = 'none';
+      }
+    }
+
+    async function fazerLogin() {
+      const usuario = document.getElementById('usuario').value.trim();
+      const senha = document.getElementById('senha').value;
+
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ usuario, senha })
+      });
+
+      if (res.ok) {
+        document.getElementById('erro-login').textContent = '';
+        verificarSessao();
+      } else {
+        document.getElementById('erro-login').textContent = 'Usuário ou senha inválidos.';
+      }
+    }
+
+    async function logout() {
+      await fetch('/api/logout', {
+        method: 'POST',
+        credentials: 'include'
+      });
+
+      window.location.reload();
+    }
+
+    async function listarUnidades() {
+      const res = await fetch('/api/unidades', {
+        credentials: 'include'
+      });
+
+      if (res.status === 401) {
+        alert('Sessão expirada. Faça login novamente.');
+        window.location.reload();
+        return;
+      }
+
+      const unidades = await res.json();
+      const tbody = document.getElementById('lista-unidades');
+      tbody.innerHTML = '';
+
+      unidades.forEach((u) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${u.nome}</td>
+          <td>${u.cidade}</td>
+          <td>${u.colaboradores}</td>
+          <td>${u.maquinas}</td>
+          <td>${u.servidores}</td>
+          <td>${u.status}</td>
+          <td>
+            <div class="table-actions">
+              <button type="button" class="secondary" onclick='editar(${JSON.stringify(u)})'>Editar</button>
+              <button type="button" class="danger" onclick='excluirUnidade(${u.id})'>Excluir</button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function editar(unidade) {
+      document.getElementById('unidade-id').value = unidade.id;
+      document.getElementById('nome').value = unidade.nome;
+      document.getElementById('cidade').value = unidade.cidade;
+      document.getElementById('colaboradores').value = unidade.colaboradores;
+      document.getElementById('maquinas').value = unidade.maquinas;
+      document.getElementById('servidores').value = unidade.servidores;
+      document.getElementById('status').value = unidade.status;
+      document.getElementById('mensagem-form').textContent = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function limparFormulario() {
+      document.getElementById('form-unidade').reset();
+      document.getElementById('unidade-id').value = '';
+      document.getElementById('mensagem-form').textContent = '';
+    }
+
+    async function excluirUnidade(id) {
+      const confirmar = window.confirm('Deseja realmente excluir esta unidade?');
+
+      if (!confirmar) return;
+
+      const res = await fetch(`/api/unidades/${id}`, {
+        method: 'DELETE',
+        credentials: 'include'
+      });
+
+      if (res.status === 401) {
+        alert('Sessão expirada. Faça login novamente.');
+        window.location.reload();
+        return;
+      }
+
+      listarUnidades();
+      limparFormulario();
+    }
+
+    document.getElementById('form-unidade').addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const id = document.getElementById('unidade-id').value;
+      const mensagem = document.getElementById('mensagem-form');
+
+      const payload = {
+        nome: document.getElementById('nome').value.trim(),
+        cidade: document.getElementById('cidade').value.trim(),
+        colaboradores: Number(document.getElementById('colaboradores').value),
+        maquinas: Number(document.getElementById('maquinas').value),
+        servidores: document.getElementById('servidores').value.trim(),
+        status: document.getElementById('status').value
+      };
+
+      let res;
+
+      if (id) {
+        res = await fetch(`/api/unidades/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify(payload)
+        });
+      } else {
+        res = await fetch('/api/unidades', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify(payload)
+        });
+      }
+
+      if (res.status === 401) {
+        alert('Sessão expirada. Faça login novamente.');
+        window.location.reload();
+        return;
+      }
+
+      if (!res.ok) {
+        mensagem.textContent = 'Não foi possível salvar a unidade.';
+        mensagem.className = 'message error';
+        return;
+      }
+
+      mensagem.textContent = id ? 'Unidade atualizada com sucesso.' : 'Unidade cadastrada com sucesso.';
+      mensagem.className = 'message success';
+
+      limparFormulario();
+      listarUnidades();
+    });
+
+    verificarSessao();
+  </script>
+</body>
+</html>

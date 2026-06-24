@@ -1,0 +1,36 @@
+cff-version: 1.0.1
+message: "Please cite this software using these metadata."
+title: "Projeto de Infraestrutura de Rede: Cooperativa BluCoop"
+abstract: "O projeto propõe a implantação de uma infraestrutura de rede para a cooperativa BluCoop, conectando a matriz e suas unidades por meio de uma comunicação segura, confiável e escalável. A solução também inclui uma aplicação web em nuvem para apoiar o gerenciamento das unidades, integrando banco de dados e práticas de segurança para proteger as informações e sustentar as operações da organização."
+authors:
+  - family-names: "Laudares Alves Pimenta Silva"
+    given-names: "Anna Luiza"
+  - family-names: "Pereira Pinto"
+    given-names: "Bernardo"
+  - family-names: "Parma Vitoria"
+    given-names: "Camille"
+  - family-names: "Perdigão Carneiro"
+    given-names: "Catharina"
+  - family-names: "Silva Farchi"
+    given-names: "João Victor"
+  - family-names: "Santos Lima"
+    given-names: "Lucas Filipe"
+  - family-names: "Oliveira Silva"
+    given-names: "Marcus Paulo"
+  - family-names: "Rodrigues Cordeiro"
+    given-names: "Fabio Leandro"
+    name-suffix: "Professor Orientador"
+    affiliation: "PUC Minas"
+keywords:
+  - "Sistemas de Informação"
+  - "Projeto de Infraestrutura"
+  - "infraestrutura de rede"
+  - "cooperativa"
+  - "BluCoop"
+  - "segurança da informação"
+  - "aplicação web em nuvem"
+  - "banco de dados"
+repository-code: "https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe5-t1-g5-cooperativa"
+license: CC-BY-4.0
+version: 1.0.0
+date-released: 2023-06-30

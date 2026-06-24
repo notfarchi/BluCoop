@@ -1,0 +1,13 @@
+# Etapa 3
+
+## Acompanhamento de Atividades
+
+| Participante | Carga Horária | Ações/Atividades |
+| --- | --- | --- |
+| Anna Luiza Laudares A. P. Silva | 10h | - Participação em reuniões com equipe<br>- Criação da instância EC2 para instalação e configuração do Zabbix Server e Zabbix Agent<br>- Criação dos gráficos gerados pelo monitoramento<br>- Documentação do monitoramento do serviço EFS |
+| Bernardo Pereira Pinto | 8h | - Participação em reuniões com equipe<br>- Monitoramento do serviço DNS<br>- Documentação do monitoramento do serviço DNS |
+| Camille Parma Vitoria | 12h | - Participação em reuniões com equipe<br>- Instalação e criação da VM para o Zabbix Server<br>- Instalação e configuração do Zabbix Agent<br>- Criação dos itens a serem monitorados + Dashboards de monitoramento do serviço AD<br>- Documentação do monitoramento do serviço AD |
+| Catharina Perdigão Carneiro | 12h | - Participação em reuniões com equipe<br>- Criação e configuração da instância EC2 com Ubuntu para a instalação do Zabbix Server, Zabbix Frontend (servidor web Apache) e Banco de Dados (MySQL)<br>- Instalação do pacote zabbix-agent no terminal da instância com o banco de dados e realização das configurações necessárias<br>- Adição e configuração do host do banco de dados ao monitoramento do Zabbix, com os devidos templates e interface<br>- Criação do mapeamento e dos gráficos gerados pelo monitoramento<br>- Documentação do monitoramento do seu serviço |
+| João Victor Silva Farchi | 10h | - Participação em reuniões com equipe<br>- Criação da instância EC2 para instalação e configuração do Zabbix Server e Zabbix Agent<br>- Ajuste das regras de Security Group para permitir comunicação entre a EC2 do Zabbix e a EC2 do Servidor Web<br>- Criação e configuração dos graphs de monitoramento no Zabbix<br>- Documentação do monitoramento do Servidor Web |
+| Lucas Filipe Santos Lima | 10h | - Participação em reuniões com equipe<br>- Criação e configuração da instância EC2 na AWS com Ubuntu 24.04 para instalação do servidor FTP (vsftpd)<br>- Configuração do Security Group com regras de acesso<br>- Instalação e configuração do Zabbix Agent 2 na instância EC2<br>- Adição e configuração do host Servidor FTP BluCoop no Zabbix com templates FTP Service e Linux by Zabbix agent<br>- Criação do mapa de rede no Zabbix representando a topologia do ambiente<br>- Documentação do monitoramento do serviço FTP |
+| Marcus Paulo Oliveira da Silva | 10h | - Participação em reuniões com equipe<br>- Reuniões semanais com professor<br>- Implantação de monitoramento com Zabbix no servidor DHCP<br>- Geração de gráficos do monitoramento<br>- Documentação do monitoramento do serviço DHCP |
